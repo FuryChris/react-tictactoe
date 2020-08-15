@@ -1,6 +1,7 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background-color: lightgray;
 }
 
 .board-row:after {
@@ -15,24 +16,25 @@ body {
 }
 
 .square {
-  background: #fff;
+  background-color: rgb(196, 169, 169);
   border: 2px solid #999;
   float: left;
-  font-size: 12vw;
+  font-size: 45px;
   font-weight: bold;
-  line-height: 10vw;
-  height: 12vw;
+  line-height: 45px;
+  height: 50px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 12vw;
+  width: 50px;
 }
 
-.square.valX {
+.valX {
   color: rgb(105, 12, 12);
 }
-.square.valO {
+
+.valO {
   color: rgb(41, 41, 124);
 }
 
@@ -63,10 +65,12 @@ body {
   clear: both;
   margin-left: 20px;
 }
+
 ol,
 ul {
   padding-left: 40px;
 }
+
 .moves {
   cursor: pointer;
   width: 150px;
@@ -88,4 +92,25 @@ ul {
 
 .moves.moves-current:hover {
   box-shadow: 6px 3px 15px 0px rgba(0, 0, 0, 1);
+}
+
+.btn {
+  width: 120px;
+  height: 50px;
+  background-color: rgba(66, 146, 42, 0.692);
+  font-weight: bold;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(172, 26, 26);
+  color: rgb(233, 214, 151);
+  font-size: 18px;
+  height: 50px
+}
+
+.winner {
+  background-color: rgb(107, 10, 47);
+  color: gold;
 }
