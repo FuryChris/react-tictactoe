@@ -14,7 +14,7 @@ class Board extends React.Component {
         super(props);
         this.state = {
             squares: Array(9).fill(null),
-            xIsNext: (Math.round(Math.random() === 0) ? true : false,
+            xIsNext: ((Math.round(Math.random()) === 0)) ? true : false,
         };
     }
 
