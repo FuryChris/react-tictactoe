@@ -23,23 +23,17 @@ class Board extends React.Component {
     }
 
     render() {
+        const rows = [0, 1, 2]
         return (
             <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
+
+                {rows.map((value, index) => {
+                    return <div className="board-row">
+                        {this.renderSquare(index * 3)}
+                        {this.renderSquare(index * 3 + 1)}
+                        {this.renderSquare(index * 3 + 2)}
+                    </div>
+                })}
             </div>
         );
     }
@@ -81,6 +75,8 @@ class Game extends React.Component {
             stepNumber: history.length,
             xIsNext: !this.state.xIsNext,
         });
+        setCurrentMove(this.state.stepNumber + 1);
+
     }
 
 
@@ -89,6 +85,7 @@ class Game extends React.Component {
             stepNumber: step,
             xIsNext: (step % 2) === 0
         });
+        setCurrentMove(step);
     }
 
     render() {
@@ -97,13 +94,11 @@ class Game extends React.Component {
         const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
-
             const desc = move ? 'Go to move #' + move : 'Go to game start';
             return (
                 <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                    <button className="moves moves-current" onClick={() => this.jumpTo(move)}>{desc}</button>
                 </li>
-
             )
         })
 
@@ -156,4 +151,19 @@ function calculateWinner(squares) {
         }
     }
     return null;
+}
+
+function setCurrentMove(move) {
+    const moves = [...document.querySelectorAll('.moves')]
+    console.log(moves[move] + ' ...........' + move);
+
+    moves.forEach(element => {
+        element.classList.remove('moves-current');
+    });
+
+    if (moves[move] !== undefined) {
+        moves[move].classList.add("moves-current");
+    } else {
+        return;
+    }
 }

@@ -3,11 +3,6 @@ body {
   margin: 20px;
 }
 
-ol,
-ul {
-  padding-left: 30px;
-}
-
 .board-row:after {
   clear: both;
   content: "";
@@ -67,4 +62,30 @@ ul {
   display: block;
   clear: both;
   margin-left: 20px;
+}
+ol,
+ul {
+  padding-left: 40px;
+}
+.moves {
+  cursor: pointer;
+  width: 150px;
+  padding: 10px 0 10px 0;
+  transition: 0.3s ease-out;
+}
+
+.moves:hover {
+  background-color: burlywood;
+  box-shadow: 10px 3px 15px 0px rgba(99, 89, 25, 0.6);
+}
+
+.moves.moves-current {
+  transition: 0s;
+  font-weight: bold;
+  color: rgb(250, 143, 143);
+  background-color: rgb(51, 49, 49);
+}
+
+.moves.moves-current:hover {
+  box-shadow: 6px 3px 15px 0px rgba(0, 0, 0, 1);
 }
