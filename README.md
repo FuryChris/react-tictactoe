@@ -1,6 +1,8 @@
-#TicTacToe Project
+# TicTacToe Project
 
-![](/images//img01.jpg)
+<p align="center">
+  <img src="/images//img01.jpg">
+</p>
 
 ### Based on tutorial:
 
