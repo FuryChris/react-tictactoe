@@ -21,13 +21,31 @@ const calculateWinner = (squares) => {
     }
     return null;
 }
+
+const getLocation = (move) => {
+    const locationMap = {
+        0: 'r: 1, c: 1',
+        1: 'r: 1, c: 2',
+        2: 'r: 1, c: 3',
+        3: 'r: 2, c: 1',
+        4: 'r: 2, c: 2',
+        5: 'r: 2, c: 3',
+        6: 'r: 3, c: 1',
+        7: 'r: 3, c: 2',
+        8: 'r: 3, c: 3',
+    };
+
+    return locationMap[move];
+};
+
+
 const initialState = {
     history: [
         {
             squares: Array(9).fill(null)
         },
     ],
-    stepNumber: 0,
+    currentStepNumber: 0,
     xIsNext: true,
     //xIsNext: ((Math.round(Math.random()) === 0)) ? true : false,
 };
@@ -39,7 +57,7 @@ class Game extends React.Component {
     }
 
     handleClick(i) {
-        const history = this.state.history.slice(0, this.state.stepNumber + 1);
+        const history = this.state.history.slice(0, this.state.currentStepNumber + 1);
         const current = history[history.length - 1];
         const squares = current.squares.slice();
         if (calculateWinner(squares) || squares[i]) {
@@ -49,15 +67,17 @@ class Game extends React.Component {
         }
 
         squares[i] = this.state.xIsNext ? 'X' : 'O';
+        console.log(i);
         this.setState({
             history: history.concat([
                 {
+                    currentLocation: getLocation(i),
                     squares: squares,
-                    astepNumber: history.length,
+                    stepNumber: history.length,
 
                 }
             ]),
-            stepNumber: history.length,
+            currentStepNumber: history.length,
             xIsNext: !this.state.xIsNext,
         });
 
@@ -66,7 +86,7 @@ class Game extends React.Component {
 
     jumpTo(step) {
         this.setState({
-            stepNumber: step,
+            currentStepNumber: step,
             xIsNext: (step % 2) === 0,
         });
     }
@@ -84,12 +104,13 @@ class Game extends React.Component {
 
     render() {
         const history = this.state.history;
-        const current = history[this.state.stepNumber];
+        const current = history[this.state.currentStepNumber];
         const winner = calculateWinner(current.squares) ? calculateWinner(current.squares).slice(0, 1) : null;
         const winnerMoves = calculateWinner(current.squares) ? calculateWinner(current.squares).slice(2, 7) : null;
         const moves = history.map((step, move) => {
-            const currentBtn = move === this.state.stepNumber ? 'moves-current' : ''
-            const desc = step.astepNumber ? `Go to move # ${step.astepNumber}` : 'Go to game start';
+            const currentLocation = step.currentLocation ? `(${step.currentLocation})` : '';
+            const currentBtn = move === this.state.currentStepNumber ? 'moves-current' : ''
+            const desc = step.stepNumber ? `Go to move # ${step.stepNumber} ${currentLocation}` : 'Go to game start';
             return (
                 <li key={move}>
                     <button className={`${currentBtn} moves`} onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -100,13 +121,12 @@ class Game extends React.Component {
         let status;
         if (winner) {
             status = 'Winner: ' + winner;
-        } else if (history.length === 10) {
+        } else if (history.length >= 10) {
             status = `Draw! `
         }
         else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
-        console.log(`winnermoves: ${winnerMoves}`)
         return (
 
             <div className="game">

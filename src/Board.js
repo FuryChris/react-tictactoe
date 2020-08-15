@@ -17,9 +17,9 @@ class Board extends React.Component {
         } else {
             winner = false;
         }
-
         return (
             <Square
+                key={i}
                 value={this.props.squares[i]}
                 onClick={() => this.props.onClick(i)}
                 winner={winner}
@@ -32,7 +32,7 @@ class Board extends React.Component {
         return (
             <div>
                 {rows.map((value, index) => {
-                    return <div className="board-row">
+                    return <div key={index} className="board-row">
                         {this.renderSquare(index * 3)}
                         {this.renderSquare(index * 3 + 1)}
                         {this.renderSquare(index * 3 + 2)}
