@@ -1,6 +1,6 @@
 #TicTacToe Project
 
-    ![](/images//img01.jpg)
+![](/images//img01.jpg)
 
 ### Based on tutorial:
 
