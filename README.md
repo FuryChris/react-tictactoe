@@ -1,3 +1,29 @@
+#TicTacToe Project
+
+    ![](/images//img01.jpg)
+
+### Based on tutorial:
+
+[Tutorial link](https://reactjs.org/tutorial/tutorial.html)
+
+## Additional features
+
+- :heavy_check_mark:(Finished) : New game button which resets history state,
+
+- :heavy_check_mark:(Finished) : Coordinates of every move in history boxes,
+
+- :heavy_check_mark:(Finished) : Decorated current move on movelist,
+
+- :heavy_check_mark:(Finished) : Displaying a draw result,
+
+- :heavy_check_mark:(Finished) : Winning squares are now decorated,
+
+- :heavy_check_mark:(Finished) : Button to sort moves in ascending or descending order,
+
+- :heavy_check_mark:(Finished) : Mapping elements instead of hardcoding it (in board element),
+
+- :warning:(To do): After using sort button, we can start play from that state without resetting history, which is not correct.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
